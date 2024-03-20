@@ -2,7 +2,14 @@
 let
   user = "shub";
   group = user;
+  home = "/home/${user}/";
   prefix = "/home/media/";
+  sops = {
+    owner = config.users.users.${user}.name;
+    group = config.users.users.${user}.group;
+    restartUnits = [ "syncthing.service" "syncthing-init.service" ];
+    sopsFile = ./syncthing.yaml;
+  };
 in
 {
   services = {
@@ -10,12 +17,12 @@ in
       enable = true;
       cert = config.sops.secrets."syncthing/cert".path;
       key = config.sops.secrets."syncthing/key".path;
-      #inherit user      group  ;
+      inherit user group;
       openDefaultPorts = true;
       settings = {
         folders = rec {
           documents = {
-            path = prefix + "documents";
+            path = home + "Documents";
             devices = [ "bluejay" ];
             type = "sendonly";
             versioning = {
@@ -28,7 +35,7 @@ in
             type = "receiveonly";
           };
           media = dcim // { path = prefix + "android/media"; };
-          music = documents // { path = prefix + "music"; };
+          music = documents // { path = home + "Music"; };
           outputs = documents // { path = prefix + "auto1111/outputs"; };
         };
         devices = {
@@ -37,4 +44,12 @@ in
       };
     };
   };
+
+  sops = {
+    secrets = {
+      "syncthing/cert" = { inherit (sops) owner group restartUnits sopsFile; };
+      "syncthing/key" = { inherit (sops) owner group restartUnits sopsFile; };
+    };
+  };
+
 }

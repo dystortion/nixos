@@ -48,6 +48,7 @@
         sox
         speedtest-cli
         starship
+        steam-run
         subdl
         tealdeer
         testdisk
@@ -61,6 +62,8 @@
         wl-clipboard
         yt-dlp
         zoxide
+        ollama
+        geekbench
       ];
 
       INXI = with pkgs; [
@@ -97,32 +100,6 @@
         catppuccin-papirus-folders
       ];
 
-      STD = with pkgs; [
-        autoconf
-        binutils
-        curl
-        gcc
-        git
-        gitRepo
-        glib
-        gnumake
-        gnupg
-        gperf
-        libcxxStdenv
-        libGL
-        libGLU
-        m4
-        ncurses5
-        pciutils
-        procps
-        python3
-        ruff
-        stdenv.cc
-        stdenv.cc.cc
-        stdenv.cc.cc.lib
-        unzip
-        util-linux
-      ];
       ROCM = with pkgs.rocmPackages; [
         clr
         miopen
@@ -134,7 +111,8 @@
         rocm-runtime
         rocm-smi
       ];
-      PYTHON = with pkgs.python3Packages; [
+      JS = with pkgs.nodePackages;[ typescript-language-server ];
+      PY = with pkgs.python3Packages; [
         black
         flake8
         jupyter
@@ -146,7 +124,8 @@
         wheel
         torchvision
         torchWithRocm
+        python-lsp-server
       ];
     in
-    CLI ++ INXI ++ NIX ++ PYTHON ++ ROCM ++ THMS;
+    CLI ++ INXI ++ NIX ++ PY ++ JS ++ ROCM ++ THMS;
 }

@@ -47,9 +47,9 @@
     psd.enable = true;
     #touchegg.enable = true;
     #vnstat.enable = true;
+    desktopManager.plasma6.enable = true;
     xserver = {
       enable = true;
-      desktopManager.plasma6.enable = true;
       deviceSection = ''
         Option "TearFree" "true"
       '';

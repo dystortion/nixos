@@ -2,7 +2,7 @@
 {
   boot = {
     kernelModules = [ "amdgpu" ];
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod; # _stable;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
     kernelParams = [
       #"idle=nomwait"
     ];
