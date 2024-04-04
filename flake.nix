@@ -12,74 +12,6 @@
         #inputs.self.overlays.unstable
       ];
     };
-  /*      
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = unstable.legacyPackages.${system};
-          std = with pkgs; [
-            autoconf
-            binutils
-            curl
-            gcc
-            git
-            gitRepo
-            glib
-            gnumake
-            gnupg
-            gperf
-            libcxxStdenv
-            libGL
-            libGLU
-            m4
-            ncurses5
-            pciutils
-            procps
-            python3
-            ruff
-            stdenv.cc
-            stdenv.cc.cc
-            stdenv.cc.cc.lib
-            unzip
-            util-linux
-          ];
-          rocm = with pkgs.rocmPackages; [
-            clr
-            miopen
-            rocblas
-            rocm-cmake
-            rocm-core
-            rocm-device-libs
-            rocminfo
-            rocm-runtime
-            rocm-smi
-          ];
-          python = with pkgs.python3Packages; [
-            black
-            flake8
-            jupyter
-            matplotlib
-            numpy
-            pandas
-            pycryptodome
-            scikit-learn
-            seaborn
-            wheel
-          ];
-          torch = with pkgs.python3Packages; [
-            torchvision
-            torchWithRocm
-          ];
-        in
-        {
-          pythonEnv = pkgs.mkShell rec {
-            buildInputs = std ++ rocm ++ python ++ torch;
-            LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
-          };
-        }
-      );
-    };
-    */
 
   inputs = {
     # NixOS
@@ -110,6 +42,12 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Catppuccin
+    catppuccin-kitty = {
+      url = "github:catppuccin/kitty";
+      flake = false;
     };
   };
 }

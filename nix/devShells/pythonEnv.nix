@@ -18,7 +18,7 @@ let
     glib
     libGL
     libGLU
-  ]) ++ (with  pkgs.rocmPackages;[
+  ]) ++ (with  pkgs.rocmPackages_5;[
     clr
     miopen
     rocblas
@@ -29,7 +29,7 @@ let
     rocm-runtime
     rocm-smi
   ]);
-  std = pkgs.rocmPackages.llvm.rocmClangStdenv;
+  std = pkgs.rocmPackages_5.llvm.rocmClangStdenv;
   pkgSet = pythonPkgs ++ runtimePkgs ++ [ std ];
 in
 {

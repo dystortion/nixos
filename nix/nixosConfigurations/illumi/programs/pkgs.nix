@@ -4,8 +4,10 @@
     let
       CLI = with pkgs; [
         age
+        amdgpu_top
         any-nix-shell
         aria2
+        atuin
         b3sum
         bat
         bottom
@@ -14,7 +16,9 @@
         choose
         delta
         dprint
+        dua
         duf
+        eza
         fastfetch
         fd
         feh
@@ -26,22 +30,25 @@
         grex
         helix
         hexyl
-        htop
         hyperfine
         imagemagick
         iperf
         lsof
         mediainfo
+        megacmd
         mpv
         nmap
-        nwjs
-        pandoc
         nodePackages.prettier
+        nvtopPackages.full
+        nwjs
+        ollama
+        pandoc
         procs
         profile-sync-daemon
         q
         rclone
         restic
+        ripgrep
         ryzenadj
         shellcheck
         sops
@@ -54,16 +61,9 @@
         testdisk
         unar
         unrar
-        amdgpu_top
-        atuin
-        dua
-        eza
-        ripgrep
         wl-clipboard
         yt-dlp
         zoxide
-        ollama
-        geekbench
       ];
 
       INXI = with pkgs; [
@@ -93,6 +93,19 @@
         statix
       ];
 
+      GUI = with pkgs;[
+        betterbird
+        discord
+        #itch
+        keepassxc
+        libreoffice-qt
+        logseq
+        picard
+        qbittorrent
+        strawberry
+        zoom-us
+      ];
+
       THMS = with pkgs; [
         catppuccin-cursors.mochaMauve
         catppuccin-gtk
@@ -100,7 +113,7 @@
         catppuccin-papirus-folders
       ];
 
-      ROCM = with pkgs.rocmPackages; [
+      ROCM = with pkgs.rocmPackages_5; [
         clr
         miopen
         rocblas
@@ -111,7 +124,9 @@
         rocm-runtime
         rocm-smi
       ];
+
       JS = with pkgs.nodePackages;[ typescript-language-server ];
+
       PY = with pkgs.python3Packages; [
         black
         flake8
@@ -127,5 +142,5 @@
         python-lsp-server
       ];
     in
-    CLI ++ INXI ++ NIX ++ PY ++ JS ++ ROCM ++ THMS;
+    CLI ++ GUI ++ INXI ++ NIX ++ THMS ++ PY ++ JS ++ ROCM;
 }
