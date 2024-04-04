@@ -1,11 +1,10 @@
 keys:
-  - &user:
-    - &age "age1s73z0p3ewf4cfmdqj8p956pxgqta70m6ys8vzu8d5kywlxahvvcs8r5rkf"
+  - &user "age1s73z0p3ewf4cfmdqj8p956pxgqta70m6ys8vzu8d5kywlxahvvcs8r5rkf"
   - &host:
     - &illumi "age15a0f6rtvcx4z0yclzm0w3k4pzhp8taw9692c5tzcxrtqrn5smshsf2hvxl"
 
 creation_rules:
   - key_groups:
       - age:
-          - *age
+          - *user
           - *illumi
