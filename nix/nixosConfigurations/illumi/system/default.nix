@@ -1,7 +1,6 @@
 { inputs, ... }:
 {
   imports = [
-    ./etc.nix
     ./fonts.nix
     ./users.nix
   ];

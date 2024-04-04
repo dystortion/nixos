@@ -5,6 +5,7 @@
     ./filesystems.nix
   ];
 
+  fileSystems."/".options = [ "mode=755" ];
   fileSystems."/nix".options = [ "compress=zstd" "lazytime" ];
   fileSystems."/boot".options = [ "umask=0077" ];
 

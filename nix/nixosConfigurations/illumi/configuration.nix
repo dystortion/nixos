@@ -12,7 +12,8 @@
     inputs.sops-nix.nixosModules.sops
     inputs.self.nixosModules.nixConfig
     inputs.self.nixosModules.base
-    inputs.self.nixosModules.restic
-    inputs.self.nixosModules.syncthing
+    inputs.self.nixosModules.kitty
+    #inputs.self.nixosModules.restic
+    #inputs.self.nixosModules.syncthing
   ];
 }

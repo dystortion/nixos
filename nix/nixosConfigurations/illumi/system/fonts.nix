@@ -6,14 +6,10 @@
     packages = with pkgs; [
       comfortaa
       corefonts
-      crimson
-      eunomia
       fira
-      hermit
+      iosevka
       nerdfonts
       noto-fonts
-      poly
-      recursive
       roboto
     ];
   };
