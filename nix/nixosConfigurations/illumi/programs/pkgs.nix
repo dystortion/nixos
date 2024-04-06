@@ -86,6 +86,7 @@
       NIX = with pkgs; [
         manix
         nil
+        nixd
         nixpkgs-fmt
         nix-du
         nix-tree
