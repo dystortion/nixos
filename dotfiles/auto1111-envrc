@@ -1,5 +1,0 @@
-use flake github:dystortion/nixos#pythonEnv --refresh
-layout python3
-export COMMANDLINE_ARGS="--medvram --theme dark"
-export HSA_OVERRIDE_GFX_VERSION=10.3.0
-export NO_TCMALLOC="True"
