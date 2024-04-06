@@ -1,28 +1,30 @@
 final: prev:
 let
-  catppuccin-variant = "mocha";
-  catppuccin-color = "mauve";
+  catppuccin = {
+    flavour = "mocha";
+    color = "mauve";
+  };
 in
 {
   catppuccin-gtk = prev.catppuccin-gtk.override {
-    accents = [ catppuccin-color ];
+    accents = [ catppuccin.color ];
     size = "standard";
     tweaks = [ ];
-    variant = catppuccin-variant;
+    variant = catppuccin.flavour;
   };
   catppuccin-kde = prev.catppuccin-kde.override {
-    flavour = [ catppuccin-variant ];
-    accents = [ catppuccin-color ];
+    flavour = [ catppuccin.flavour ];
+    accents = [ catppuccin.color ];
     winDecStyles = [
       "modern"
       "classic"
     ];
   };
   catppuccin-papirus-folders = prev.catppuccin-papirus-folders.override {
-    flavor = catppuccin-variant;
-    accent = catppuccin-color;
+    flavor = catppuccin.flavour;
+    accent = catppuccin.color;
   };
-  catppuccin-plymouth = prev.catppuccin-plymouth.override { variant = catppuccin-variant; };
+  catppuccin-plymouth = prev.catppuccin-plymouth.override { variant = catppuccin.flavour; };
   gopass = prev.gopass.override { passAlias = true; };
   nerdfonts = prev.nerdfonts.override {
     fonts = [

@@ -103,6 +103,7 @@
         picard
         qbittorrent
         strawberry
+        vscodeEnv
         zoom-us
       ];
 
