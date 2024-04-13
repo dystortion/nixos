@@ -6,11 +6,10 @@
       inherit inputs;
       checks.statix = pkgs: "${pkgs.statix}/bin/statix check";
       legacyPackages = pkgs: pkgs;
-      nixpkgs.config = { allowUnfree = true; };
+      #nixpkgs.config = { allowUnfree = true; };
       withOverlays = [
         inputs.self.overlays.overrides
         #inputs.self.overlays.unstable
-        inputs.self.overlays.vscode
         #inputs.nix-vscode-extensions.overlays.default
       ];
     };
@@ -51,9 +50,6 @@
     };
 
     # Catppuccin
-    catppuccin-kitty = {
-      url = "github:catppuccin/kitty";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
   };
 }

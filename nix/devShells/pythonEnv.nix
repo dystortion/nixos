@@ -8,28 +8,26 @@ let
     numpy
     pandas
     pycryptodome
+    python-lsp-server
     scikit-learn
     seaborn
-    wheel
     torchvision
     torchWithRocm
+    wheel
   ];
   runtimePkgs = (with pkgs; [
     glib
     libGL
     libGLU
-  ]) ++ (with  pkgs.rocmPackages_5;[
+  ]) ++ (with  pkgs.rocmPackages;[
     clr
-    miopen
-    rocblas
-    rocm-cmake
     rocm-core
     rocm-device-libs
-    rocminfo
     rocm-runtime
     rocm-smi
+    rocminfo
   ]);
-  std = pkgs.rocmPackages_5.llvm.rocmClangStdenv;
+  std = pkgs.rocmPackages.llvm.rocmClangStdenv;
   pkgSet = pythonPkgs ++ runtimePkgs ++ [ std ];
 in
 {

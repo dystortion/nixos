@@ -2,6 +2,7 @@
 let
   runtimePkgs = with pkgs.nodePackages; [
     npm
+    typescript-language-server
   ];
   pkgSet = runtimePkgs;
 in

@@ -15,22 +15,6 @@
         "type": "github"
       }
     },
-    "catppuccin-kitty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704898305,
-        "narHash": "sha256-mRFa+40fuJCUrR1o4zMi7AlgjRtFmii4fNsQyD8hIjM=",
-        "owner": "catppuccin",
-        "repo": "kitty",
-        "rev": "d7d61716a83cd135344cbb353af9d197c5d7cec1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "kitty",
-        "type": "github"
-      }
-    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -383,7 +367,6 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
-        "catppuccin-kitty": "catppuccin-kitty",
         "flakelight": "flakelight",
         "hardware": "hardware",
         "home-manager": "home-manager",
