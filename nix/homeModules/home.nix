@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, ... }:
 let
   user = "user";
 in
@@ -13,7 +13,7 @@ in
       cp = "cp --verbose --reflink=auto";
       dui = "dua --stay-on-filesystem interactive";
       g = "git";
-      jc = "$journalctl";
+      jc = "journalctl";
       jcu = "journalctl --user";
       l = "eza --long --group --all";
       le = "eza";
@@ -65,6 +65,7 @@ in
           unar
         ];
         GUI = with pkgs;[
+          airshipper
           discord
           #itch
           keepassxc
@@ -270,32 +271,43 @@ in
     fish = {
       enable = true;
       catppuccin.enable = true;
-      functions = {
-        fish_greeting = "fastfetch";
-        rst = {
-          body = ''
-            set -fx RESTIC_PASSWORD_FILE
-            set -fx RESTIC_FROM_PASSWORD_FILE
-            set -fx RESTIC_REPOSITORY_FILE
-            set -fx RESTIC_FROM_REPOSITORY_FILE
-            restic $argv
-          '';
-          wraps = "restic";
+      functions =
+        let
+          secretsDir = "{$XDG_RUNTIME_DIR}/secrets/";
+          pass = secretsDir + "restic/pass";
+          repo = secretsDir + "restic/repo";
+          B2 = {
+            id = secretsDir + "restic/B2/id";
+            key = secretsDir + "restic/B2/key";
+            repo = secretsDir + "restic/B2/repo";
+          };
+        in
+        {
+          fish_greeting = "fastfetch";
+          rst = {
+            body = ''
+              set -fx RESTIC_PASSWORD_FILE ${pass}
+              set -fx RESTIC_FROM_PASSWORD_FILE ${pass}
+              set -fx RESTIC_REPOSITORY_FILE ${repo}
+              set -fx RESTIC_FROM_REPOSITORY_FILE ${repo}
+              restic $argv
+            '';
+            wraps = "restic";
+          };
+          rstb = {
+            body = ''
+              set -fx RESTIC_PASSWORD_FILE ${pass}
+              set -fx RESTIC_FROM_PASSWORD_FILE ${pass}
+              set -fx RESTIC_REPOSITORY_FILE ${B2.repo}
+              set -fx RESTIC_FROM_REPOSITORY_FILE ${B2.repo}
+              set -fx AWS_ACCESS_KEY_ID (cat ${B2.id})
+              set -fx AWS_SECRET_ACCESS_KEY (cat ${B2.key})
+              restic $argv
+            '';
+            wraps = "restic";
+          };
+          starship_transient_rprompt_func = "starship module time";
         };
-        rstb = {
-          body = ''
-            set -fx RESTIC_PASSWORD_FILE
-            set -fx RESTIC_FROM_PASSWORD_FILE
-            set -fx RESTIC_REPOSITORY_FILE
-            set -fx RESTIC_FROM_REPOSITORY_FILE
-            set -fx AWS_ACCESS_KEY_ID
-            set -fx AWS_SECRET_ACCESS_KEY
-            restic $argv
-          '';
-          wraps = "restic";
-        };
-        starship_transient_rprompt_func = "starship module time";
-      };
     };
     gh.enable = true;
     git = {
@@ -568,6 +580,11 @@ in
     yazi = {
       enable = true;
       catppuccin.enable = true;
+      settings = {
+        show_hidden = true;
+        sort_by = "natural";
+        sort_dir_first = true;
+      };
     };
     yt-dlp.enable = true;
     zoxide.enable = true;
@@ -589,6 +606,26 @@ in
     ssh-agent.enable = true;
     syncthing.enable = false;
   };
+
+  sops = {
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    #age.sshKeyPaths = [ "${home.homeDirectory}/.ssh/key" ];
+    defaultSopsFile = inputs.self.outPath + "/secrets/home.yaml";
+    secrets =
+      let
+        restic = { sopsFile = inputs.self.outPath + "/secrets/restic.yaml"; };
+      in
+      {
+        #path = "%r/test";
+        "restic/exclude" = { inherit (restic) sopsFile; };
+        "restic/pass" = { inherit (restic) sopsFile; };
+        "restic/repo" = { inherit (restic) sopsFile; };
+        "restic/B2/id" = { inherit (restic) sopsFile; };
+        "restic/B2/key" = { inherit (restic) sopsFile; };
+        "restic/B2/repo" = { inherit (restic) sopsFile; };
+      };
+  };
+
 
   xdg = {
     enable = true;

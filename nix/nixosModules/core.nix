@@ -20,6 +20,7 @@ in
       gptfdisk
       helix
       kitty.terminfo
+      lsof
       nmap
       nvd
       procs
