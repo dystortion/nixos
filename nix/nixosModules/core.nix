@@ -149,7 +149,6 @@ in
     groups."${user}".gid = 1000;
     mutableUsers = false;
     users = {
-      root.hashedPasswordFile = config.sops.secrets."root".path;
       "${user}" = {
         createHome = true;
         description = "User";
@@ -177,19 +176,16 @@ in
     };
   };
 
-  sops.secrets =
-    let
+  sops.secrets = {
+    user = {
       neededForUsers = true;
       sopsFile = inputs.self.outPath + "/secrets/users.yaml";
-    in
-    {
-      root = { inherit neededForUsers sopsFile; };
-      user = { inherit neededForUsers sopsFile; };
-      githubPAT = {
-        sopsFile = inputs.self.outPath + "/secrets/githubPAT.sops";
-        format = "binary";
-        mode = "0440";
-        group = "keys";
-      };
     };
+    githubPAT = {
+      sopsFile = inputs.self.outPath + "/secrets/githubPAT.sops";
+      format = "binary";
+      mode = "0440";
+      group = "keys";
+    };
+  };
 }

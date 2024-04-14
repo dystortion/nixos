@@ -2,9 +2,11 @@ keys:
   - &user "age1s73z0p3ewf4cfmdqj8p956pxgqta70m6ys8vzu8d5kywlxahvvcs8r5rkf"
   - &hosts:
     - &illumi "age1gy23wre5w3wdlrd7mjr25p702nsndu9h23hs6n8qajl3puv0lfjql5zprv"
+    - &meruem "age1ly2mvjhvcamcvj3yc636y0tjzhqgeu9cz4guau6ce203mpvsvufqw74wzc"
 
 creation_rules:
   - key_groups:
       - age:
           - *user
           - *illumi
+          - *meruem
