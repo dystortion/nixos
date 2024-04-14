@@ -31,5 +31,9 @@
     hostId = "05e44c7f";
   };
 
+  swapDevices = [{
+    device = "/swap/file";
+  }];
+
   system.stateVersion = "24.05";
 }
