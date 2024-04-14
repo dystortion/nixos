@@ -100,10 +100,6 @@ in
   services = {
     dnsmasq.enable = true;
     chrony.enable = true;
-    clamav = {
-      daemon.enable = true;
-      updater.enable = true;
-    };
     openssh = {
       enable = true;
       openFirewall = false;
