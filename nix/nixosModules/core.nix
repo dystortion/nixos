@@ -21,6 +21,7 @@ in
       helix
       kitty.terminfo
       nmap
+      nvd
       procs
       q
       ripgrep
