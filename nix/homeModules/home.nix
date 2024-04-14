@@ -452,6 +452,7 @@ in
       enable = true;
       compression = true;
       controlMaster = "auto";
+      controlPersist = "10m";
       hashKnownHosts = true;
     };
     starship = {

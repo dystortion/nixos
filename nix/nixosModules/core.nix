@@ -19,6 +19,7 @@ in
       #mediainfo
       gptfdisk
       helix
+      kitty.terminfo
       nmap
       procs
       q
