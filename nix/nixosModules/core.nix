@@ -74,11 +74,13 @@ in
   };
 
   programs = {
+    bandwhich.enable = true;
     command-not-found.enable = false;
     fish.enable = true;
-    bandwhich.enable = true;
+    git.enable = true;
     iftop.enable = true;
     iotop.enable = true;
+    htop.enable = true;
     mtr.enable = true;
     nix-ld.enable = true;
     ssh.knownHosts = {
