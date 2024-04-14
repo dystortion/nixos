@@ -39,6 +39,7 @@ in
           duf
           fastfetch
           fd
+          glow
           hyperfine
           iperf
           mediainfo
@@ -69,6 +70,7 @@ in
           keepassxc
           libreoffice-qt
           logseq
+          mullvad-browser
           picard
           qbittorrent
           strawberry
@@ -151,6 +153,11 @@ in
 
   #accounts.email.accounts = {    posteo = {      address = "shubhams@posteo.de";    };  };
 
+  catppuccin = {
+    accent = "lavender";
+    flavour = "mocha";
+  };
+
   editorconfig = {
     enable = true;
     settings = { };
@@ -230,6 +237,7 @@ in
     bash.enable = true;
     bat = {
       enable = true;
+      catppuccin.enable = true;
       config = { };
       extraPackages = with pkgs.bat-extras; [
         batdiff
@@ -238,7 +246,10 @@ in
         prettybat
       ];
     };
-    bottom.enable = true;
+    bottom = {
+      enable = true;
+      catppuccin.enable = true;
+    };
     boxxy.enable = true;
     bun.enable = true;
     carapace.enable = true;
@@ -258,6 +269,7 @@ in
     firefox.enable = true;
     fish = {
       enable = true;
+      catppuccin.enable = true;
       functions = {
         fish_greeting = "fastfetch";
         rst = {
@@ -302,12 +314,13 @@ in
       };
       delta = {
         enable = true;
+        catppuccin.enable = true;
         options = {
           line-numbers = true;
           minus-style = "syntax auto";
           navigate = true;
           plus-style = "syntax auto";
-          syntax-theme = "Dracula";
+          side-by-side = true;
         };
       };
       extraConfig = {
@@ -317,7 +330,7 @@ in
       };
       lfs.enable = true;
       signing = {
-        signByDefault = true;
+        #signByDefault = true;
         key = "1E7E5DEF2AACFD7C";
       };
       userEmail = "dystortion@posteo.net";
@@ -325,7 +338,11 @@ in
     };
     git-cliff.enable = true;
     git-credential-oauth.enable = true;
-    gitui.enable = true;
+    gitui = {
+      enable = true;
+      catppuccin.enable = true;
+    };
+    glamour.catppuccin.enable = true;
     gpg = {
       enable = true;
       homedir = "${config.xdg.dataHome}/gnupg";
@@ -336,6 +353,7 @@ in
     };
     helix = {
       enable = true;
+      catppuccin.enable = true;
       defaultEditor = true;
     };
     home-manager = {
@@ -382,6 +400,7 @@ in
     jujutsu.enable = true;
     kitty = {
       enable = true;
+      catppuccin.enable = true;
       font = {
         name = "Iosevka";
         package = pkgs.iosevka;
@@ -408,10 +427,11 @@ in
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
       };
-      theme = "Catppuccin-Mocha";
     };
-    kodi.enable = true;
-    librewolf.enable = true;
+    kodi = {
+      enable = true;
+      datadir = "${config.xdg.dataHome}/kodi";
+    };
     looking-glass-client.enable = true;
     man.generateCaches = true;
     mangohud.enable = true;
@@ -436,6 +456,7 @@ in
     };
     starship = {
       enable = true;
+      catppuccin.enable = true;
       enableTransience = true;
       settings = {
         format = "$all";
@@ -543,7 +564,10 @@ in
 
       };
     };
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      catppuccin.enable = true;
+    };
     yt-dlp.enable = true;
     zoxide.enable = true;
   };
