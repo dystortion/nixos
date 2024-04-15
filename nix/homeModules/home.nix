@@ -375,36 +375,49 @@ in
     htop = {
       enable = true;
       settings = {
-        color_scheme = 6;
-        cpu_count_from_one = 0;
-        delay = 15;
-        fields = with config.lib.htop.fields; [
-          PID
-          USER
-          PRIORITY
-          NICE
-          M_SIZE
-          M_RESIDENT
-          M_SHARE
-          STATE
-          PERCENT_CPU
-          PERCENT_MEM
-          TIME
-          COMM
-        ];
+        account_guest_in_cpu_meter = 1;
+        cpu_count_from_one = 1;
+        delay = 10;
+        detailed_cpu_time = 1;
+        hide_userland_threads = 1;
         highlight_base_name = 1;
         highlight_megabytes = 1;
         highlight_threads = 1;
+        shadow_distribution_path_prefix = 1;
+        shadow_other_users = 1;
+        show_cpu_frequency = 1;
+        show_cpu_temperature = 1;
+        show_thread_names = 1;
+        update_process_names = 1;
+        fields = with config.lib.htop.fields;
+          [
+            PID
+            USER
+            PRIORITY
+            NICE
+            OOM
+            M_SIZE
+            M_RESIDENT
+            M_SHARE
+            STATE
+            PERCENT_CPU
+            PERCENT_MEM
+            TIME
+            ELAPSED
+            COMM
+          ];
       } // (with config.lib.htop; leftMeters [
-        (bar "AllCPUs2")
+        (bar "LeftCPUs2")
         (bar "Memory")
         (bar "Swap")
-        (text "Zram")
+        (bar "DiskIO")
+        (bar "NetworkIO")
       ]) // (with config.lib.htop; rightMeters [
+        (bar "RightCPUs2")
         (text "Tasks")
         (text "LoadAverage")
-        (text "Uptime")
         (text "Systemd")
+        (text "Uptime")
       ]);
     };
     info.enable = true;
