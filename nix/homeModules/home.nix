@@ -103,6 +103,7 @@ in
           nixd
           nixpkgs-fmt
           nix-du
+          #nix-inspect
           nix-tree
           nvd
           statix

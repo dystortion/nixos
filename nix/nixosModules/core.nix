@@ -53,7 +53,7 @@ in
     useDHCP = lib.mkDefault false;
     firewall = {
       enable = true;
-      logReversePathDrops = true;
+      #logReversePathDrops = true;
       trustedInterfaces = [ "tailscale0" ];
     };
   };
