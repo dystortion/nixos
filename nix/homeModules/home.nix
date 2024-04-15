@@ -617,7 +617,6 @@ in
     megasync.enable = false;
     pueue.enable = true;
     ssh-agent.enable = true;
-    syncthing.enable = false;
   };
 
   sops = {

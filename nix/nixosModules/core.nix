@@ -48,6 +48,7 @@ in
       enable = true;
       #wifi.backend = "iwd";
     };
+    nftables.enable = true;
     resolvconf.useLocalResolver = true;
     useDHCP = lib.mkDefault false;
     firewall = {
@@ -127,8 +128,7 @@ in
     #picosnitch.enable = true;
     tailscale = {
       enable = true;
-      extraUpFlags = [ "--accept-dns=false" ];
-      useRoutingFeatures = "both";
+      extraUpFlags = [ ];
     };
     vnstat.enable = true;
   };
